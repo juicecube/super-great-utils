@@ -1,0 +1,33 @@
+*.DS_Store
+*.log
+*.txt
+
+# IDEs
+.vscode
+.idea
+
+# ts
+tsconfig.*
+tslint.json
+
+#shell
+.qshell
+
+# pack files
+*.tgz
+.*.swp
+._*
+.git
+.hg
+.npmrc
+.lock-wscript
+.svn
+.wafpickle-*
+config.gypi
+CVS
+npm-debug.log
+*.html
+yarn.lock
+.babelrc
+libs/
+src/

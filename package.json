@@ -1,0 +1,26 @@
+{
+  "name": "super-utils",
+  "version": "1.0.0",
+  "description": "open utils for development",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "src"    
+  ],
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "npm run clean && tsc --outDir dist/src --sourceMap",
+    "prepublish": "npm run lint && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juicecube/super-utils.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juicecube/super-utils/issues"
+  },
+  "homepage": "https://github.com/juicecube/super-utils#readme"
+}
