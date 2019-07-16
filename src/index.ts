@@ -1,5 +1,3 @@
-import date from './date';
+export { default as superDate } from './date';
 
-export const super_utils = {
-  superDate: date,
-}
+

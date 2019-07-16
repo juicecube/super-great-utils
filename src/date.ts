@@ -1,13 +1,40 @@
 
 
 class superDate {
+  private dateNameStr = {
+    en: {
+        dayNames: [
+            'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        ],
+        monthNames: [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ]
+    },
+
+    zh: {
+        dayNames: [
+            '周日', '周一', '周二', '周三', '周四', '周五', '周六',
+            '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+        ],
+        monthNames: [
+            '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月',
+            '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'
+        ]
+    }
+  };
   /**
    * 时间格式化
    * @param  {Date} date 待格式化的时间
    * @param  {string} rule 格式化规则
+   * @param  {Object} options 高级选项，可以指定locale，utc
    * @return {string} 格式化后的字符串
+   * 
+   * 使用方法：
+   * date.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss') => 2019年07月16日 15:22:06
    *
-   * 支持的格式化选项包括:
+   * rule 支持的格式化选项包括:
    * 年：yy(97), yyyy(1997)
    * 月：m(1), mm(01), mmm(1月), mmmm(一月)
    * 日：d(5), dd(05), ddd(周五)，dddd(星期五)，小写是日期，大写是星期几
@@ -16,11 +43,74 @@ class superDate {
    * 秒：s(8), ss(08)
    * 毫秒：l(056), L(56), l三位，L两位
    *
+   * options 高级选项:
+   * {
+   *  utc:boolean (是否取utc时间，默认false)
+   *  locale:'zh'|'en' (用于显示中文还是英文, 默认为false)
+   * }
   */
-  format = (date, rule) => {
+  format = (date, rule, options) => {
     if (!date || isNaN(date)) {
       throw new SyntaxError('invalid date');
     };
+
+    options = options || {};
+    rule = rule || "yyyy-mm-dd HH:MM:ss";
+    const utc = options.utc || false;
+    const locale = options.locale || 'zh';
+    const	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloZ]|"[^"]*"|'[^']*'/g;
+    const timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
+    const timezoneClip = /[^-+\dA-Z]/g;
+
+    const fill_up = (val, len?:number) => {
+      val = String(val);
+      len = len || 2;
+      while (val.length < len) val = '0' + val;
+      return val;
+    }
+
+    const	_ = utc ? 'getUTC' : 'get';
+                    const d = date[_ + 'Date']();
+                    const D = date[_ + 'Day']();
+                    const m = date[_ + 'Month']();
+                    const y = date[_ + 'FullYear']();
+                    const H = date[_ + 'Hours']();
+                    const M = date[_ + 'Minutes']();
+                    const s = date[_ + 'Seconds']();
+                    const L = date[_ + 'Milliseconds']();
+                    const o = utc ? 0 : date.getTimezoneOffset();
+                    const flags = {
+                        d: d,
+                        dd: fill_up(d),
+                        ddd: this.dateNameStr[locale].dayNames[D],
+                        dddd: this.dateNameStr[locale].dayNames[D + 7],
+                        m: m + 1,
+                        mm: fill_up(m + 1),
+                        mmm: this.dateNameStr[locale].monthNames[m],
+                        mmmm: this.dateNameStr[locale].monthNames[m + 12],
+                        yy: String(y).slice(2),
+                        yyyy: y,
+                        h: H % 12 || 12,
+                        hh: fill_up(H % 12 || 12),
+                        H: H,
+                        HH: fill_up(H),
+                        M: M,
+                        MM: fill_up(M),
+                        s: s,
+                        ss: fill_up(s),
+                        l: fill_up(L, 3),
+                        L: fill_up(L > 99 ? Math.round(L / 10) : L),
+                        t: H < 12 ? 'a'  : 'p',
+                        tt: H < 12 ? 'am' : 'pm',
+                        T: H < 12 ? 'A'  : 'P',
+                        TT: H < 12 ? 'AM' : 'PM',
+                        Z: utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
+                        o: (o > 0 ? '-' : '+') + fill_up(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+                    };
+    
+    return rule.replace(token, function($0) {
+        return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
+    });
     
   }
 
