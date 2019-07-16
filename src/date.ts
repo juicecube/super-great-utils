@@ -1,7 +1,18 @@
-
+/**
+  * 时间 & 日期
+  * 
+*/
+export interface DateFormat{
+  date:number;
+  rule?:string;
+  options?:{
+    utc?:boolean;
+    locale?:'zh'|'en';
+  };
+}
 
 class superDate {
-  private dateNameStr = {
+  private dateNameMap = {
     en: {
         dayNames: [
             'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
@@ -32,16 +43,20 @@ class superDate {
    * @return {string} 格式化后的字符串
    * 
    * 使用方法：
-   * date.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss') => 2019年07月16日 15:22:06
-   *
+   * superDate.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss') => 2019年07月16日 15:22:06
+   * superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss') => 2019-07-16 15:22:06
+   * superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd') => 2019-07-16 15:22:06 周二
+   * superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' }) => 2019-07-16 13:47:09 PM Tuesday
+   * 
    * rule 支持的格式化选项包括:
    * 年：yy(97), yyyy(1997)
    * 月：m(1), mm(01), mmm(1月), mmmm(一月)
-   * 日：d(5), dd(05), ddd(周五)，dddd(星期五)，小写是日期，大写是星期几
+   * 日：d(5), dd(05),
    * 小时：h(2), hh(02), H(14), HH(14)，小写是12小时制，大写是24小时制
    * 分：M(3), MM(03),
    * 秒：s(8), ss(08)
    * 毫秒：l(056), L(56), l三位，L两位
+   * 星期：ddd(周五)，dddd(星期五)
    *
    * options 高级选项:
    * {
@@ -49,11 +64,12 @@ class superDate {
    *  locale:'zh'|'en' (用于显示中文还是英文, 默认为false)
    * }
   */
-  format = (date, rule, options) => {
+  format = (date, rule?:string, options?) => {
     if (!date || isNaN(date)) {
       throw new SyntaxError('invalid date');
     };
 
+    date = date ? new Date(date) : new Date();
     options = options || {};
     rule = rule || "yyyy-mm-dd HH:MM:ss";
     const utc = options.utc || false;
@@ -82,12 +98,12 @@ class superDate {
                     const flags = {
                         d: d,
                         dd: fill_up(d),
-                        ddd: this.dateNameStr[locale].dayNames[D],
-                        dddd: this.dateNameStr[locale].dayNames[D + 7],
+                        ddd: this.dateNameMap[locale].dayNames[D],
+                        dddd: this.dateNameMap[locale].dayNames[D + 7],
                         m: m + 1,
                         mm: fill_up(m + 1),
-                        mmm: this.dateNameStr[locale].monthNames[m],
-                        mmmm: this.dateNameStr[locale].monthNames[m + 12],
+                        mmm: this.dateNameMap[locale].monthNames[m],
+                        mmmm: this.dateNameMap[locale].monthNames[m + 12],
                         yy: String(y).slice(2),
                         yyyy: y,
                         h: H % 12 || 12,
