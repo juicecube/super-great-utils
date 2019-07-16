@@ -23,7 +23,9 @@ class SuperPerformance {
       if (immediate) {
         func.apply(context, args);
       }
-      timer = setTimeout(func.apply(context, args), delay);
+      timer = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
     }
   }
 
