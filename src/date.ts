@@ -11,7 +11,7 @@ export interface DateFormat{
   };
 }
 
-class superDate {
+class SuperDate {
   private dateNameMap = {
     en: {
         dayNames: [
@@ -133,6 +133,6 @@ class superDate {
 
 }
 
-const date = new superDate();
+const date = new SuperDate();
 
 export default date;
