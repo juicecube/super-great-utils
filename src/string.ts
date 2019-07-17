@@ -61,7 +61,7 @@ class SuperString {
       const value = item.substr(index + 1);
       params[name] = value;
     });
-    return JSON.parse(JSON.stringify(params));
+    return params;
   }
 }
 
