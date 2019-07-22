@@ -19,3 +19,6 @@ tags
 node_modules
 stats.json
 config/local.json
+
+# unit test
+mochawesome-report

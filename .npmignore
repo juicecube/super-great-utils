@@ -23,11 +23,9 @@ tslint.json
 .lock-wscript
 .svn
 .wafpickle-*
-config.gypi
-CVS
-npm-debug.log
 *.html
 yarn.lock
-.babelrc
-libs/
-src/
+
+# unit test
+mochawesome-report
+

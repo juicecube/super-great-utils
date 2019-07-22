@@ -4,15 +4,13 @@
   "description": "open utils for development",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "src"
-  ],
+  "types": "super-utils.d.ts",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "npm run clean && tsc --outDir dist/src --sourceMap",
+    "build": "npm run clean && tsc -p tsconfig.json",
     "prepublish": "npm run lint && npm run build",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./dist",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/juicecube/super-utils/issues"
   },
-  "homepage": "https://github.com/juicecube/super-utils#readme"
+  "homepage": "https://github.com/juicecube/super-utils#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "mochawesome": "^4.0.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
 }

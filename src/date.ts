@@ -2,15 +2,6 @@
   * 时间 & 日期
   * 
 */
-export interface DateFormat{
-  date:number;
-  rule?:string;
-  options?:{
-    utc?:boolean;
-    locale?:'zh'|'en';
-  };
-}
-
 class SuperDate {
   private dateNameMap = {
     en: {
@@ -57,14 +48,16 @@ class SuperDate {
    * 秒：s(8), ss(08)
    * 毫秒：l(056), L(56), l三位，L两位
    * 星期：ddd(周五)，dddd(星期五)
-   *
+   * 时区：Z或z (UTC, CST等)
+   * 时区offset：O或o (+0800等)
+   * 
    * options 高级选项:
    * {
    *  utc:boolean (是否取utc时间，默认false)
    *  locale:'zh'|'en' (用于显示中文还是英文, 默认为false)
    * }
   */
-  format = (date, rule?:string, options?) => {
+  format = (date, rule?, options?) => {
     if (!date || isNaN(date)) {
       throw new SyntaxError('invalid date');
     };
@@ -121,7 +114,9 @@ class SuperDate {
                         T: H < 12 ? 'A'  : 'P',
                         TT: H < 12 ? 'AM' : 'PM',
                         Z: utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
+                        z: utc ? 'UTC' : (String(date).match(timezone) || ['']).pop().replace(timezoneClip, ''),
                         o: (o > 0 ? '-' : '+') + fill_up(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+                        O: (o > 0 ? '-' : '+') + fill_up(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
                     };
     
     return rule.replace(token, function($0) {
@@ -129,8 +124,6 @@ class SuperDate {
     });
     
   }
-
-
 }
 
 const date = new SuperDate();

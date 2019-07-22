@@ -6,26 +6,27 @@
     "jsx": "preserve",
     "target": "es5",
     "lib": ["dom", "es2016"],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "removeComments": true,
-    "outDir": "dist",
+    "sourceMap": true,
+    "outDir": "dist/src",
     "baseUrl": ".",
-    // "declaration": true,
-    // "declarationDir": "./types",
     "paths": {
-      "root": ["."],
+      "*": ["."],
+      "root": ["."]
     },
     "resolveJsonModule": true,
   },
   "files": [
-    "./index.d.ts"
+    "./super-utils.d.ts"
   ],
   "include": [
+    "test/**/*",
     "src/**/*",
+    "./super-utils.d.ts"
   ],
   "exclude": [
     "node_modules",
-    "dist",
   ]
 }
