@@ -27,5 +27,7 @@
   ],
   "exclude": [
     "node_modules",
+    "mochawesome-report",
+    "test"
   ]
 }
