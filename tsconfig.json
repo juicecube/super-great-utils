@@ -22,7 +22,6 @@
     "./super-utils.d.ts"
   ],
   "include": [
-    "test/**/*",
     "src/**/*",
     "./super-utils.d.ts"
   ],
