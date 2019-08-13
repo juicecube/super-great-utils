@@ -13,7 +13,7 @@ class SuperString {
    * 
    * 使用方法：
    * ```
-   * SuperString.translateForHTML('<hello>');  => '&lt;hello&gt;'
+   * superString.escape('<hello>');  => '&lt;hello&gt;'
    * ```
   */
   escape = (str:string) => {
@@ -45,7 +45,7 @@ class SuperString {
    * 
    * 使用方法：
    * ```
-   * SuperString.parseUrl();  => '&lt;hello&gt;'
+   * superString.parseUrl('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1');  => {ie: "utf-8", f: "8", rsv_bp: "1", rsv_idx: "1"}
    * ```
   */
   parseUrl = (url?:string) => {
