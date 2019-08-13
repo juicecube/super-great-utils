@@ -1,6 +1,6 @@
 {
   "name": "super-great-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "open utils for development",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

@@ -46,7 +46,8 @@ open utils for development
 ```
 superDate.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss')   // 2019年07月16日 15:22:06
 superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss')   // 2019-07-16 15:22:06
-superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd')   // 2019-07-16 15:22:06 周二superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' })   // 2019-07-16 13:47:09 PM Tuesday
+superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd')   // 2019-07-16 15:22:06 周二
+superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' })   // 2019-07-16 13:47:09 PM Tuesday
 ```
 
 ### superString.escape(str:string)
