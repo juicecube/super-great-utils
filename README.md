@@ -43,10 +43,11 @@ open utils for development
 * }
 
 使用方法：
-
-`superDate.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss') => 2019年07月16日 15:22:06
-superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss') => 2019-07-16 15:22:06
-superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd') => 2019-07-16 15:22:06 周二superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' }) => 2019-07-16 13:47:09 PM Tuesday`
+```
+superDate.format(timestemp, 'yyyy年mm月dd日 HH:MM:ss')   // 2019年07月16日 15:22:06
+superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss')   // 2019-07-16 15:22:06
+superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd')   // 2019-07-16 15:22:06 周二superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' })   // 2019-07-16 13:47:09 PM Tuesday
+```
 
 ### superString.escape(str:string)
 @param  {string} str 需转义的字符串
@@ -55,7 +56,7 @@ superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd') => 2019-07-16 15:22:06 �
 
 使用方法：
 
-`superString.escape('<hello>');  => '&lt;hello&gt;'`
+`superString.escape('<hello>');  // '&lt;hello&gt;'`
 
 ### superString.parseUrl(str:string)
 @param  {string} url (可选)
@@ -64,7 +65,7 @@ superDate.format(timestemp, 'yyyy-mm-dd HH:MM:ss ddd') => 2019-07-16 15:22:06 �
 
 使用方法：
 
-`superString.parseUrl('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1');  => {ie: "utf-8", f: "8", rsv_bp: "1", rsv_idx: "1"}`
+`superString.parseUrl('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1');  // {ie: "utf-8", f: "8", rsv_bp: "1", rsv_idx: "1"}`
 
 ### superPerformance.debounce(func:function，delay:number，immediate?:boolean)
 函数防抖
