@@ -4,7 +4,7 @@
   "description": "open utils for development",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
-  "types": "super-utils.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "npm run clean && tsc -p tsconfig.json",

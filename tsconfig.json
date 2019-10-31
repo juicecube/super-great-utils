@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "alwaysStrict": false,
-    "allowJs": true,
+    "declaration": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
     "target": "es5",
@@ -18,12 +18,8 @@
     },
     "resolveJsonModule": true,
   },
-  "files": [
-    "./super-utils.d.ts"
-  ],
   "include": [
     "src/**/*",
-    "./super-utils.d.ts"
   ],
   "exclude": [
     "node_modules",
