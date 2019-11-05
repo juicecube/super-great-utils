@@ -1,6 +1,6 @@
 {
   "name": "@mlz/super-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "open utils for development",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

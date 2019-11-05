@@ -2,7 +2,7 @@
 open utils for development
 
 ## install
-`npm i super-great-utils -S`
+`npm i @mlz/super-utils -S`
 
 ## use
 `import { superDate, superPerformance, superString } from 'super-great-utils';`
