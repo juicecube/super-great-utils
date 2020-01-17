@@ -1,6 +1,6 @@
 {
   "name": "@mlz/super-utils",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "open utils for development",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "precommit": "npm run lint"
+      "pre-commit": "npm run lint"
     }
   },
   "repository": {
