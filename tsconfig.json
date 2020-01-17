@@ -1,25 +1,18 @@
 {
+  "extends": "./node_modules/@mlz/lint/tsconfig.json",
   "compilerOptions": {
-    "alwaysStrict": false,
-    "declaration": true,
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "target": "es5",
-    "lib": ["dom", "es2016"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "outDir": "dist/src",
     "baseUrl": ".",
     "paths": {
       "*": ["."],
       "root": ["."]
     },
-    "resolveJsonModule": true,
+    "checkJs": false,
+    "allowJs": false
   },
   "include": [
     "src/**/*",
+    "test/**/*",
+    "index.d.ts"
   ],
   "exclude": [
     "node_modules",

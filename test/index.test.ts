@@ -1,6 +1,7 @@
+// eslint-disable-next-line import/order
 const expect = require('chai').expect;
 import superDate from '../src/date';
-import superPerformance from '../src/performance';
+// import superPerformance from '../src/performance';
 import superString from '../src/string';
 
 describe('Unit test', function(){
@@ -11,16 +12,16 @@ describe('Unit test', function(){
         expect(superDate.format(1563256029342)).to.be.equal('2019-07-16 13:47:09');
       });
       it('superDate.format(1563256029342, "yyyy年mm月dd日 HH:MM:ss") should return 2019年07月16日 13:47:09', function(){
-        expect(superDate.format(1563256029342, "yyyy年mm月dd日 HH:MM:ss")).to.be.equal('2019年07月16日 13:47:09');
+        expect(superDate.format(1563256029342, 'yyyy年mm月dd日 HH:MM:ss')).to.be.equal('2019年07月16日 13:47:09');
       });
       it('superDate.format(1563256029342, "yyyy-mm-dd HH:MM:ss ddd") should return 2019年07月16日 13:47:09 周二', function(){
-        expect(superDate.format(1563256029342, "yyyy年mm月dd日 HH:MM:ss ddd")).to.be.equal('2019年07月16日 13:47:09 周二');
+        expect(superDate.format(1563256029342, 'yyyy年mm月dd日 HH:MM:ss ddd')).to.be.equal('2019年07月16日 13:47:09 周二');
       });
       it('superDate.format(1563256029342, "yyyy-mm-dd HH:MM:ss dddd") should return 2019年07月16日 13:47:09 星期二', function(){
-        expect(superDate.format(1563256029342, "yyyy年mm月dd日 HH:MM:ss dddd")).to.be.equal('2019年07月16日 13:47:09 星期二');
+        expect(superDate.format(1563256029342, 'yyyy年mm月dd日 HH:MM:ss dddd')).to.be.equal('2019年07月16日 13:47:09 星期二');
       });
       it('superDate.format(1563256029342, "yyyy-mm-dd HH:MM:ss TT dddd", { locale: "en" }) should return 2019-07-16 13:47:09 PM Tuesday', function(){
-        expect(superDate.format(1563256029342, "yyyy-mm-dd HH:MM:ss TT dddd", { locale: "en" })).to.be.equal('2019-07-16 13:47:09 PM Tuesday');
+        expect(superDate.format(1563256029342, 'yyyy-mm-dd HH:MM:ss TT dddd', { locale: 'en' })).to.be.equal('2019-07-16 13:47:09 PM Tuesday');
       });
     });
   });
@@ -34,7 +35,7 @@ describe('Unit test', function(){
   //       let timer = null;
   //       timer = setInterval(function(){
   //         num >= 7 && clearInterval(timer);
-          
+
   //         num += 1;
   //       }, 200);
   //     }
@@ -43,7 +44,7 @@ describe('Unit test', function(){
   //     it('superPerformance.debounce()');
   //   });
   //   describe('@throttle()', function(){
-      
+
   //   });
   // });
 
@@ -53,20 +54,22 @@ describe('Unit test', function(){
     describe('@escape()', function(){
       it('superString.escape(dsf&dsfa<dfaf>dfsaf"fdsa©dfsdaf®sfdfsda×dsfsf÷fwefwe) should return dsf&amp;dsfa&lt;dfaf&gt;dfsaf&quot;fdsa&copy;dfsdaf&reg;sfdfsda&times;dsfsf&divide;fwefwe', function(){
         expect(superString.escape('dsf&dsfa<dfaf>dfsaf"fdsa©dfsdaf®sfdfsda×dsfsf÷fwefwe')).to.be.equal('dsf&amp;dsfa&lt;dfaf&gt;dfsaf&quot;fdsa&copy;dfsdaf&reg;sfdfsda&times;dsfsf&divide;fwefwe');
-      })
+      });
     });
 
     // 获取url参数方法test
     describe('@parseUrl()', function(){
-      const right_return_value = {
+      const rightReturnValue = {
         ie: 'utf-8',
         f: '8',
+        // eslint-disable-next-line @typescript-eslint/camelcase
         rsv_bp: '1',
-        rsv_idx: '1'
-      }
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        rsv_idx: '1',
+      };
       it('superString.parseUrl(https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1) should return {...}', function(){
         expect(superString.parseUrl('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1')).to.be.an('object');
-        expect(JSON.stringify(superString.parseUrl('https://ww.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1'))).to.be.equal(JSON.stringify(right_return_value));
+        expect(JSON.stringify(superString.parseUrl('https://ww.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1'))).to.be.equal(JSON.stringify(rightReturnValue));
       });
     });
   });

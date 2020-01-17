@@ -6,11 +6,16 @@
   "module": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "lint": "tslint --project tsconfig.json",
+    "lint": "eslint src/**.ts test/**.ts",
     "build": "npm run clean && tsc -p tsconfig.json",
     "prepublish": "npm run lint && npm run build",
     "clean": "rm -rf ./dist",
     "test": "mocha"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "npm run lint"
+    }
   },
   "repository": {
     "type": "git",
@@ -24,10 +29,12 @@
   "homepage": "https://github.com/juicecube/super-utils#readme",
   "dependencies": {},
   "devDependencies": {
+    "@mlz/lint": "^1.1.9",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
     "chai": "^4.2.0",
+    "husky": "^4.0.10",
     "mocha": "^6.1.4",
     "mochawesome": "^4.0.1",
     "ts-node": "^8.3.0",
